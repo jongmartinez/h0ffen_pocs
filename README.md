@@ -1,2 +1,4 @@
-# tanoshi_appsec
-Collection of scripts that I developed to exploit vulnerabilities
+PoC scripts
+==============================
+
+Set of scripts divided by folder, according to each vuln, that I have developed to demonstrate the exploitation of several vulns
